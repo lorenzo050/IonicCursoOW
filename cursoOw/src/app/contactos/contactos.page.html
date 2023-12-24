@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>contactos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">contactos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let contacto of arr">
+      <ion-label (click)="pulsarNombre(contacto)">{{ contacto }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <a routerLink="/mapa/">Ir a mapa</a>
+  <p></p>
+  <a href="/mapa/">Ir a mapa</a>
+</ion-content>

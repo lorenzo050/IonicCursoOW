@@ -1,0 +1,7 @@
+{
+  "name": "cursoOw",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
