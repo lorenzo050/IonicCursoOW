@@ -1,0 +1,35 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
+
+
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>detalleContacto</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button slot="icon-only" routerLink="lista-contactos"
+      routerDirection="back">X</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">detalleContacto</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-button color="warning" (click)="onClickVolver()">Volver</ion-button>
+</ion-content>

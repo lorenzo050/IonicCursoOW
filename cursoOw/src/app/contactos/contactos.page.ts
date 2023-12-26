@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterLinkWithHref } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 
 @Component({
@@ -15,14 +15,42 @@ import { RouterLinkWithHref } from '@angular/router';
 export class ContactosPage implements OnInit {
 
   arr: string[];
-  constructor() { 
+  constructor(
+    private router: Router
+  ) { 
     this.arr = ['Mario', 'Laura', 'Rocío', 'Manuel'];
   }
 
+  //ciclo de vida
   ngOnInit() {
+    console.log('[ngOnInit] contactos')
+  }
+
+  ionViewWillEnter(){
+    console.log('[ionViewWillEnter] contactos')
+  }
+
+  ionViewDidEnter(){
+    console.log('[ionViewDidEnter] contactos')
+  }
+
+  ionViewWillLeave(){
+    console.log('[ionViewWillLeave] contactos')
+  }
+
+  ionViewDidLeave(){
+    console.log('[ionViewDidLeave] contactos')
+  }
+
+  ngOnDestroy(){
+    console.log('[ngOnDestroy] contactos')
   }
 
   pulsarNombre(contacto:any){
     console.log(contacto);
+  }
+
+  navegarMapa(){
+    this.router.navigate(['/mapa'])
   }
 }
