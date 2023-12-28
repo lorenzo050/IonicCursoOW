@@ -12,4 +12,8 @@
   </ion-header>
 
   <ion-button (click)="onClickDetalle()">Ir al detalle</ion-button>
+
+  <ion-button color="success" (click)="onOpenModal()"> Lanzar Modal</ion-button>
+
+  <app-card nombre="ruben" email="rocio@gmail.com" telefono="984949" (editarContacto)="onEditarContacto($event)"></app-card>
 </ion-content>

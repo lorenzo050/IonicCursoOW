@@ -132,6 +132,82 @@ onClickDetalle(){
   }
 ```
 
+### side-menu - menu lateral
+https://ionicframework.com/docs/api/menu
+
+### ventana modal -> ventana emergente , como alert
+ejemplo : modals\info , ejecucion en lista-contacto
+
+```javascript
+import { ModalController } from '@ionic/angular/standalone';
+ constructor(
+    private modalController: ModalController
+  ) { }
+this.modalController.dismiss({mensaje:"cierra el modal"}, 'close');
+```
+
+en la pagina donde lo queremos abrir
+```javascript
+import { ModalController } from '@ionic/angular/standalone';
+import { InfoComponent } from 'src/app/modals/info/info.component';
+
+ constructor(private navController: NavController,
+    private modalController: ModalController) { }
+
+ onOpenModal() {
+    this.modalController.create({
+      component: InfoComponent,
+      componentProps: {
+        nombre: 'Laura',
+        telefono:'9999999'
+      }
+    }).then(modal => {
+      modal.present();
+      return modal.onDidDismiss();
+    }).then(result => {console.log(result)});
+  }
+```
+
+### Grid - maquetacion
+```html
+  <ion-grid>
+    <ion-row>
+      <ion-col>1</ion-col>
+      <ion-col size="auto">2</ion-col>
+      <ion-col>3</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2">1</ion-col>
+      <ion-col size="3">2</ion-col>
+      <ion-col size="6">3</ion-col>
+      <ion-col size="1">4</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-sm="3">1</ion-col>
+      <ion-col size="12" size-sm="2">2</ion-col>
+      <ion-col size="12" size-sm="7">3</ion-col>
+    </ion-row>
+
+    <!--Desplazar columnas -->
+    <ion-row>
+      <ion-col offset="1">1</ion-col>
+      <ion-col offset="2">2</ion-col>
+      <ion-col offset="3">3</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col offset="0" offset-md="2">1</ion-col>
+      <ion-col offset="2">2</ion-col>
+      <ion-col offset="3">3</ion-col>
+    </ion-row>
+  </ion-grid>
+```
+
+### Crear componente
+ionic generate
+>component
+
 ### Pruebas sin instalar ionic
 
 ```html
