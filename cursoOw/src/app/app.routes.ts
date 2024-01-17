@@ -34,4 +34,20 @@ export const routes: Routes = [
     path: 'notas',
     loadComponent: () => import('./notas/notas.page').then( m => m.NotasPage)
   },
+  {
+    path: 'action',
+    loadComponent: () => import('./action/action.page').then( m => m.ActionPage)
+  },
+  {
+    path: 'alert',
+    loadComponent: () => import('./alert/alert.page').then( m => m.AlertPage)
+  },
+  {
+    path: 'estilos',
+    loadComponent: () => import('./estilos/estilos.page').then( m => m.EstilosPage)
+  },
+  {
+    path: 'formularios',
+    loadComponent: () => import('./formularios/formularios.page').then( m => m.FormulariosPage)
+  },
 ];

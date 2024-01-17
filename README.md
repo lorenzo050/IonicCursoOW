@@ -25,15 +25,16 @@ ionic serve
 
 #### crear otra página:
 
-```
+```bash
 ionic generate
+ ionic generate page action
 ```
 
 este comando importa la ruta automaticamente
 
 generar página dentro de otra
 
-```
+```bash
 ionic generate page contactos/ListaContactos
 ```
 
@@ -204,9 +205,243 @@ import { InfoComponent } from 'src/app/modals/info/info.component';
   </ion-grid>
 ```
 
-### Crear componente
+# Crear componente
 ionic generate
 >component
+
+# Componentes nativos IONIC
+### ion-text - diferenciar tipos de texto cambiando su color
+```html
+<ion-text color="warning">
+    <h1>Titulo pagina</h1>
+  </ion-text>
+
+  <p>
+    Lorem ipsum dolor sit <ion-text color="danger">consectetur adipisicing elit</ion-text> . Quo, placeat? Earum
+    laboriosam quasi similique, non fugiat itaque ea labore? Qui illum
+    dignissimos officia totam illo maiores nemo perferendis distinctio tempora!
+  </p>
+```
+### ion-list
+```html
+<ion-list [inset]="true" lines="inset">
+    <ion-list-header color="success">
+      <ion-label>Ciudades de españa</ion-label>
+      <ion-button>ver todas</ion-button>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Madrid</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Barcelona</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Valencia</ion-label>
+    </ion-item>
+  </ion-list>
+```
+
+## ion-item-sliding
+botones deslizables
+
+```html
+ <ion-list>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>botones derecha</ion-label>
+      </ion-item>
+
+      <ion-item-options >
+        <ion-item-option color="danger">Borrar</ion-item-option>
+        <ion-item-option color="success">Editar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+```
+
+## Action sheet 
+Botones emergentes
+
+```javascript
+ constructor(
+    private actionSheetController: ActionSheetController
+  ) { }
+
+  ngOnInit() {
+  }
+
+  async onPresentSheet(){
+  const sheet = await this.actionSheetController.create({
+      header: 'Cabecera',
+      subHeader:'Subtitulo',
+      buttons:[
+        {text: 'Eliminar', role:'destructive', data: {action:'eliminar'} },
+        {text: 'Compartir', data: {action:'compartir'} },
+        {text: 'Cancelar', role:'cancel', data: {action:'cancelar'} }
+      ]
+    });
+
+    await sheet.present();
+    const result = await sheet.onDidDismiss();
+    console.log(result);
+  }
+```
+
+## Alert controller
+
+```javascript
+constructor( private alertController: AlertController,
+    private loadingController: LoadingController) { }
+
+  async ngOnInit() {
+   const loading = await this.loadingController.create({
+      message: 'Cargando...',
+      duration: 3000
+    });
+    
+    await loading.present();
+  }
+
+ async openAlert(){
+   const alert= await this.alertController.create({
+      header: 'Titutlo alerta',
+      subHeader:'Subtitulo alerta',
+      message:'Esto es una alerta',
+      buttons:[
+        {text: 'Confirmar',role: 'confirm',handler:()=>{ //handler es para lanzar/ejecutar alguna funcion
+          console.log('Confirmación')
+        }},
+        {text: 'Cancelar',role: 'cancel',handler:()=>{ //handler es para lanzar/ejecutar alguna funcion
+          console.log('Cancelar')
+        }}
+      ],
+      inputs:[
+        {placeholder:'Introduce tu nombre'},
+        {placeholder:'Introduce tu correo', attributes: {maxlength:8}},
+        {type: 'number', placeholder: 'Introduce tu edad',min:1,max:99}
+      ]
+    });
+
+    await alert.present();
+
+    const result = await alert.onDidDismiss();
+    console.log(result);
+  }
+```
+
+## Loading controller
+```javascript
+constructor( private alertController: AlertController,
+    private loadingController: LoadingController) { }
+
+
+ async ngOnInit() {
+   const loading = await this.loadingController.create({
+      message: 'Cargando...',
+      duration: 3000
+    });
+    
+    await loading.present();
+  }
+```
+
+# Estilos
+## Aplicar mediaquery
+```html
+<div class="ion-text-md-uppercase">
+```
+
+## Ocultar
+```html
+<div class="ion-hide">
+  ```
+
+## Ocultar con código
+```html
+<div [ngClass]="{ 'ion-hide' : mostrar }">
+    <h3>Titulo</h3>
+    <p class="ion-padding-top ion-margin">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eum libero
+      deleniti veniam totam esse nobis, enim quidem sapiente maiores aperiam,
+      corporis fugit maxime sunt delectus quisquam! Voluptatum, harum aperiam.
+    </p>
+  </div>
+
+  <ion-button (click)="toggleMostrar()">Mostrar</ion-button>
+  ```
+
+```javascript
+  mostrar: boolean;
+
+  constructor() { 
+    this.mostrar = false;
+  }
+
+  toggleMostrar(){
+    this.mostrar= !this.mostrar;
+  }
+```
+
+
+## Formularios
+
+### Formularios tipo Model
+
+```javascript
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+  //instancia formulario
+  formulario: FormGroup;
+  
+  constructor() { 
+    this.formulario = new FormGroup({
+      nombre: new FormControl(),
+      apellidos: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl(),
+      dni: new FormControl()
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  onSubmit($event: any) {
+    console.log(this.formulario.value)
+  }
+```
+
+```html
+<form [formGroup]="formulario" (ngSubmit)="onSubmit($event)">
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" formControlName="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellidos</ion-label>
+    <ion-input type="text" formControlName="apellidos"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Edad</ion-label>
+    <ion-input type="number" formControlName="edad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" formControlName="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input type="password" formControlName="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>DNI</ion-label>
+    <ion-input type="text" formControlName="dni"></ion-input>
+  </ion-item>
+  <ion-button type="submit">Enviar</ion-button>
+</form>
+```
+
+https://ionicframework.com/docs/api/input
 
 ### Pruebas sin instalar ionic
 

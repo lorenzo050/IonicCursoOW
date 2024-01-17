@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>estilos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-text-wrap">
+    <h3>Titulo</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eum libero
+      deleniti veniam totam esse nobis, enim quidem sapiente maiores aperiam,
+      corporis fugit maxime sunt delectus quisquam! Voluptatum, harum aperiam.
+    </p>
+  </div>
+
+  <div class="ion-text-md-uppercase">
+    <h3>Titulo</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eum libero
+      deleniti veniam totam esse nobis, enim quidem sapiente maiores aperiam,
+      corporis fugit maxime sunt delectus quisquam! Voluptatum, harum aperiam.
+    </p>
+  </div>
+
+  <div [ngClass]="{ 'ion-hide' : mostrar }">
+    <h3>Titulo</h3>
+    <p class="ion-padding-top ion-margin">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eum libero
+      deleniti veniam totam esse nobis, enim quidem sapiente maiores aperiam,
+      corporis fugit maxime sunt delectus quisquam! Voluptatum, harum aperiam.
+    </p>
+  </div>
+
+  <ion-button (click)="toggleMostrar()">Mostrar</ion-button>
+</ion-content>
