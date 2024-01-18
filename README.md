@@ -443,6 +443,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 https://ionicframework.com/docs/api/input
 
+
+## Servicios para peticiones http / bases de datos
+
+ionic generate service services/Contactos
+
+import { HttpClientModule } from '@angular/common/http';
+
 ### Pruebas sin instalar ionic
 
 ```html

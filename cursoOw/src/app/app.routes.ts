@@ -50,4 +50,8 @@ export const routes: Routes = [
     path: 'formularios',
     loadComponent: () => import('./formularios/formularios.page').then( m => m.FormulariosPage)
   },
+  {
+    path: 'productos',
+    loadComponent: () => import('./productos/productos.page').then( m => m.ProductosPage)
+  },
 ];

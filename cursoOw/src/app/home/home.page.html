@@ -82,5 +82,11 @@
     </ion-item-sliding>
   </ion-list>
 
+  <ion-list>
+    <ion-item *ngFor="let contacto of contactos">
+      <h2> {{ contacto.nombre }} {{contacto.apellidos}}</h2>
+      <p>Edad : {{ contacto.edad}}</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
